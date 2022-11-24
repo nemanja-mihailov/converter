@@ -1,33 +1,35 @@
-﻿using System;
+﻿using ConvertorEDDE.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication3.Models;
 
-namespace WebApplication3.Controllers
+namespace ConvertorEDDE.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+
         public ActionResult Index()
         {
-            return View("~/ Views / Index / Index.cshtml", new CalcModel());
+            return View("Index", new ConvertModel());
         }
         [HttpPost]
-       public ActionResult Index(CalcModel calcModel)
+        public ActionResult ConvertToEuro(ConvertModel convertModel)
         {
-            double euro = calcModel.dinar / 118;
-            calcModel.euro = euro;
+            double euro = convertModel.broj / 118;
+            convertModel.euro = euro;
             ModelState.Clear();
+            return View("Index", convertModel);
 
-            return View("~/Views/Index/Index.cshtml", calcModel);
-            
         }
-       
-
-
-
-      
+        [HttpPost]
+        public ActionResult ConvertToDinar(ConvertModel convertModel)
+        {
+            double dinar = convertModel.broj * 118;
+            convertModel.dinar = dinar;
+            ModelState.Clear();
+            return View("Index", convertModel);
+        }
     }
 }

@@ -1,37 +1,28 @@
-﻿@model WebApplication3.Models.CalcModel
+﻿@model ConvertorEDDE.Models.ConvertModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Dinari u eure</h2>
-<h4><i>Unesi koliko dinara zelis da konvertujes u eure !</i></h4>
+<h2>Konverzija</h2>
 
-@using (Html.BeginForm("Index", "Home", FormMethod.Post))
 
+@using (Html.BeginForm("ConvertToEuro", "Home", FormMethod.Post))
 {
-    @Html.TextAreaFor(m => m.dinar);
+    @Html.TextAreaFor(m => m.broj);
     <i>dinara</i>
-
-    <input type="submit" value=">>>" />
-
+    <input type="submit" value="ConvertToEuro" />
     @Html.DisplayFor(m => m.euro);
     <i>eura</i>
-
-
 }
-<h2>Euri u dinare</h2>
-<h4><i>Unesi koliko eura zelis da konvertujes u dinare !</i></h4>
-@using (Html.BeginForm("Index", "Home1", FormMethod.Post))
+
+@using (Html.BeginForm("ConvertToDinar", "Home", FormMethod.Post))
 {
-
-    @Html.TextAreaFor(m => m.euro1);
+    @Html.TextAreaFor(m => m.broj);
     <i>eura</i>
-
-    <input type="submit" value=">>>" />
-    @Html.DisplayFor(m => m.dinar1);
+    <input type="submit" value="ConvertToDinar" />
+    @Html.DisplayFor(m => m.dinar);
     <i>dinara</i>
-
 }
 
 
